@@ -10,6 +10,7 @@ header{
   border-bottom: 1px solid #F2EBE9;
   display: flex;
   justify-content: space-between;
+  background-color: #b1c5e0;
 }
 
 .logo{
@@ -179,9 +180,10 @@ header{
 
 /* Footer Component  */
 footer{
-  height: 70px;
+  height: 90px;
   display: flex;
   justify-content: center;
   align-items: center;
   border-top: 1px solid #F2EBE9;
+  background-color: #b1c5e0;
 }

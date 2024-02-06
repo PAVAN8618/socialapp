@@ -1,22 +1,30 @@
 import { useState } from "react";
-import { Link, NavLink } from "react-router-dom"
+import { auth, provider} from '../firebase/config'
+import { signInWithPopup, signOut } from "firebase/auth";
+import { Link, NavLink} from "react-router-dom"
 
  function Header() {
-  const [isAuth, setIsAuth] = useState(false);
+  const [isAuth, setIsAuth] = useState(JSON.parse(localStorage.getItem('isAuth')) || false);
 
   function handleLogin(){
-    setIsAuth(true);
+    signInWithPopup(auth, provider).then((result) =>{
+      setIsAuth(true);
+      localStorage.setItem("isAuth", true);
+    })
+    
   }
   function handleLogout(){
+    signOut(auth);
     setIsAuth(false);
+    localStorage.setItem("isAuth", false);
   }
   return (
     <header>
       <Link to='/' className='logo'>
-      <img src="https://source.unsplash.com/random/200x200?sig=1" alt="logo"/>
+      <img src="https://d3nn873nee648n.cloudfront.net/900x600/20620/300-PA1061529.jpg" alt="logo"/>
       <span>Myblog</span>
       </Link>
-      <nav>
+      <nav className="nav">
         <NavLink to='/' className='link' end>Home</NavLink>
     {isAuth ?(
       <>
